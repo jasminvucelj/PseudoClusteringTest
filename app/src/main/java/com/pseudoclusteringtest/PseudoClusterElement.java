@@ -48,4 +48,19 @@ public class PseudoClusterElement {
         return location;
     }
 
+    String locationsToString() {
+        int size = locationCluster.size();
+        if (size == 0) return "";
+        else {
+            StringBuilder sb = new StringBuilder();
+            for(Location location : locationCluster) {
+                sb.append(location.getLatitude())
+                        .append(" ")
+                        .append(location.getLongitude())
+                        .append("\n");
+            }
+            return sb.toString();
+        }
+    }
+
 }

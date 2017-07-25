@@ -50,12 +50,12 @@ public class MainActivity extends Activity {
             @Override
             public void onLocationChanged(Location location) {
 
-                t.append("\n " + location.getLongitude() + " " + location.getLatitude());
+                t.append("\n " + location.getLatitude() + " " + location.getLongitude());
                 pc.add(location);
                 PseudoClusterElement largestCluster = pc.getLargestCluster();
 
-                t2.setText(String.valueOf(largestCluster.size()));
-
+                t2.setText(largestCluster.locationsToString());
+                // t2.setText(String.valueOf(largestCluster.size()));
                 // t2.setText(String.valueOf(pc.getTotalElementCount()));
             }
 
