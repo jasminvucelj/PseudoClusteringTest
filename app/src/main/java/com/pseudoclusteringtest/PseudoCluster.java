@@ -6,6 +6,7 @@ import android.location.Location;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class PseudoCluster {
     private List<PseudoClusterElement> clusterList;
 
@@ -18,6 +19,10 @@ public class PseudoCluster {
     }
 
 
+    /**
+     * Counts the total number of elements across all clusters.
+     * @return the number of elements.
+     */
     int getTotalElementCount() {
         int size = clusterList.size();
         if (size == 0) {
@@ -33,6 +38,10 @@ public class PseudoCluster {
     }
 
 
+    /**
+     * Adds a location to the cluster list, into the best fitting cluster.
+     * @param location the Location to be added to a cluster.
+     */
     void add(Location location) {
         int clusterCount = clusterList.size();
 
@@ -62,12 +71,20 @@ public class PseudoCluster {
     }
 
 
+    /**
+     * Adds a new cluster (with the specified location) into the cluster list.
+     * @param location the Location with which the new cluster is to be initialized.
+     */
     private void addCluster(Location location) {
         PseudoClusterElement element = new PseudoClusterElement(location);
         clusterList.add(element);
     }
 
 
+    /**
+     * Finds the cluster with the largest number of elements.
+     * @return the largest cluster.
+     */
     PseudoClusterElement getLargestCluster() {
         int size = clusterList.size();
         if (size == 0) {
