@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends Activity {
 
@@ -50,11 +51,14 @@ public class MainActivity extends Activity {
             @Override
             public void onLocationChanged(Location location) {
 
-                t.append("\n " + location.getLatitude() + " " + location.getLongitude());
+                t.append("\n " +
+                        String.format(Locale.getDefault(), "%7.5f", location.getLatitude()) +
+                        " " +
+                        String.format(Locale.getDefault(), "%7.5f", location.getLongitude()));
                 pc.add(location);
                 PseudoClusterElement largestCluster = pc.getLargestCluster();
 
-                t2.setText(largestCluster.locationsToString());
+                t2.setText(locationListToString(largestCluster.getLocations()));
                 // t2.setText(String.valueOf(largestCluster.size()));
                 // t2.setText(String.valueOf(pc.getTotalElementCount()));
             }
@@ -119,10 +123,10 @@ public class MainActivity extends Activity {
         else {
             StringBuilder sb = new StringBuilder();
             for(Location location : locationList) {
-                sb.append(location.getLatitude())
-                        .append(" ")
-                        .append(location.getLongitude())
-                        .append("\n");
+                sb.append("\n ");
+                sb.append(String.format(Locale.getDefault(), "%7.5f", location.getLatitude()));
+                sb.append(" ");
+                sb.append(String.format(Locale.getDefault(), "%7.5f", location.getLongitude()));
             }
             return sb.toString();
         }
